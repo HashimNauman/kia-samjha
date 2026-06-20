@@ -1,13 +1,13 @@
 import { useState, useRef } from "react";
 import EXPLANATIONS from "./explanations.json";
-import chachaImg from "./assets/ChachaLogo.png";
+import { CHACHA_SRC } from "./chachaSrc";
 
 const TERM_PRESETS = Object.keys(EXPLANATIONS);
 
 const SECTION_LABELS = [
   { key: "plain_english", label: "PLAIN ENGLISH", accent: false },
   { key: "analogy", label: "THE DESI ANALOGY", accent: true },
-  { key: "punchline", label: "THE PUNJABI PUNCHLINE", accent: false },
+  { key: "punchline", label: "THE PUNCHLINE", accent: false },
   { key: "real_example", label: "IN REAL LIFE", accent: false },
 ];
 
@@ -113,23 +113,23 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-8 py-10 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
         <div className="lg:col-span-5 lg:sticky lg:top-10 self-start space-y-10">
           <header>
-            <div className="flex items-center gap-5 mb-6">
+            <div className="flex items-end gap-3 mb-5">
+              <h1 className="text-5xl sm:text-6xl text-zinc-900 leading-none" style={{ letterSpacing: "-0.04em", fontWeight: 700 }}>
+                Kia <span className="text-rose-600">Samjha?</span>
+              </h1>
               <img
-                src={chachaImg}
-                alt="Chacha explaining tech"
-                className="w-28 sm:w-36"
-                style={{ mixBlendMode: "multiply", flexShrink: 0 }}
+                src={CHACHA_SRC}
+                alt="Chacha gesturing"
+                className="h-32 sm:h-40 w-auto flex-shrink-0 select-none -mb-1"
+                draggable={false}
               />
-              <div>
-                <h1 className="text-5xl sm:text-6xl text-zinc-900 leading-none mb-3" style={{ letterSpacing: "-0.04em", fontWeight: 700 }}>
-                  Kia <span className="text-rose-600">Samjha?</span>
-                </h1>
-                <p className="text-zinc-500 leading-relaxed">
-                  You don't need a CS degree — you need a good analogy. Pick any tech
-                  term and get it explained desi style.
-                </p>
-              </div>
             </div>
+            <p className="text-zinc-500 leading-relaxed max-w-md">
+              You don't need a CS degree — you need a good analogy. Pick any tech, IT,
+              or AI term and get it explained through Pakistani pop culture: Vital Signs,
+              Junoon, samosas vs pakoras, PSL collapses, and a Punjabi punchline to make
+              it stick.
+            </p>
           </header>
 
           <section>
