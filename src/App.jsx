@@ -190,7 +190,7 @@ export default function App() {
 
         <div ref={outputRef} className="lg:col-span-7 space-y-6 scroll-mt-10">
           <div className="flex items-center justify-between">
-            <p className="font-mono text-xs tracking-widest text-zinc-400">THE GLOSSARY</p>
+            <p className="font-mono text-xs tracking-widest text-zinc-400">Yahan Samjho</p>
             <span className="flex items-center gap-2 text-zinc-400 text-xs font-mono">
               <SparkIcon /> {results.length} explained this session
             </span>
