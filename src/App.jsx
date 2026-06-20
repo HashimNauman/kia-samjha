@@ -44,7 +44,8 @@ Return ONLY a raw JSON object — no markdown fences, no preamble:
 Keep the technology accurate underneath the jokes. Use natural Urdu-English code-switching. No emojis.`;
 
   const viaFetch = async () => {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const workerUrl = import.meta.env.VITE_API_URL || "https://kia-samjha-api.hashim-nauman.workers.dev";
+    const response = await fetch(workerUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
