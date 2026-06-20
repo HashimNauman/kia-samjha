@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import EXPLANATIONS from "./explanations.json";
+import chachaImg from "./assets/ChachaLogo.png";
 
 const TERM_PRESETS = Object.keys(EXPLANATIONS);
 
@@ -35,30 +36,6 @@ const FlagPK = ({ width = 21 }) => (
   </svg>
 );
 
-const KiaSamjhaGuy = ({ height = 104 }) => (
-  <svg height={height} viewBox="0 0 130 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ flexShrink: 0 }}>
-    <path d="M14 150 C18 120, 40 110, 56 110 C70 110, 86 118, 92 138" stroke="#18181b" strokeWidth="3" strokeLinecap="round" />
-    <path d="M48 108 L48 98 M64 108 L64 98" stroke="#18181b" strokeWidth="3" strokeLinecap="round" />
-    <circle cx="56" cy="66" r="26" stroke="#18181b" strokeWidth="3" />
-    <path d="M32 58 C34 34, 78 34, 80 58" stroke="#18181b" strokeWidth="3" strokeLinecap="round" />
-    <path d="M42 58 q5 -4 10 0" stroke="#18181b" strokeWidth="2.5" strokeLinecap="round" />
-    <path d="M60 58 q5 -4 10 0" stroke="#18181b" strokeWidth="2.5" strokeLinecap="round" />
-    <circle cx="47" cy="65" r="2.3" fill="#18181b" />
-    <circle cx="65" cy="65" r="2.3" fill="#18181b" />
-    <path d="M46 80 q10 6 20 0" stroke="#18181b" strokeWidth="3" strokeLinecap="round" />
-    <path d="M50 86 q6 4 12 0" stroke="#18181b" strokeWidth="2" strokeLinecap="round" />
-    <path d="M88 128 C102 118, 110 96, 104 80" stroke="#18181b" strokeWidth="3" strokeLinecap="round" />
-    <path d="M104 80 C101 64, 101 54, 103 46" stroke="#18181b" strokeWidth="3" strokeLinecap="round" />
-    <circle cx="103" cy="46" r="3.2" fill="#be123c" />
-    <g stroke="#be123c" strokeWidth="2.6" strokeLinecap="round">
-      <path d="M103 46 L97 31" />
-      <path d="M103 46 L102 28" />
-      <path d="M103 46 L107 31" />
-      <path d="M103 46 L110 35" />
-      <path d="M103 46 L95 34" />
-    </g>
-  </svg>
-);
 
 function ResultCard({ result, index }) {
   const { term, data } = result;
@@ -140,7 +117,7 @@ export default function App() {
               <h1 className="text-5xl sm:text-6xl text-zinc-900 leading-none" style={{ letterSpacing: "-0.04em", fontWeight: 700 }}>
                 Kia <span className="text-rose-600">Samjha?</span>
               </h1>
-              <KiaSamjhaGuy height={104} />
+              <img src={chachaImg} alt="Chacha explaining tech" height={120} style={{ height: 120, width: "auto", flexShrink: 0 }} />
             </div>
             <p className="text-zinc-500 leading-relaxed max-w-md">
               You don't need a CS degree — you need a good analogy. Pick any tech, IT,
