@@ -98,7 +98,18 @@ export default function App() {
         * { transition: border-color .3s cubic-bezier(.16,1,.3,1), background-color .3s cubic-bezier(.16,1,.3,1), color .3s cubic-bezier(.16,1,.3,1), transform .25s cubic-bezier(.16,1,.3,1), box-shadow .3s cubic-bezier(.16,1,.3,1); }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fadeUp .55s cubic-bezier(.16,1,.3,1) both; }
-        @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } * { transition: none !important; } }
+        @keyframes smokeRise1 { 0% { opacity:0; transform:translateY(0) scaleX(1); } 15% { opacity:.45; } 60% { opacity:.18; } 100% { opacity:0; transform:translateY(-38px) scaleX(1.8); } }
+        @keyframes smokeRise2 { 0% { opacity:0; transform:translateY(0) scaleX(1) rotate(0deg); } 20% { opacity:.35; } 70% { opacity:.12; } 100% { opacity:0; transform:translateY(-32px) scaleX(2) rotate(8deg); } }
+        @keyframes smokeRise3 { 0% { opacity:0; transform:translateY(0) scaleX(1); } 10% { opacity:.3; } 50% { opacity:.15; } 100% { opacity:0; transform:translateY(-28px) scaleX(1.5); } }
+        .chacha-wrap .smoke { position:absolute; border-radius:50%; pointer-events:none; opacity:0; }
+        .chacha-wrap:hover .smoke { animation-play-state:running; }
+        .chacha-wrap .smoke { animation-play-state:paused; }
+        .smoke-cig-1 { width:8px; height:8px; background:rgba(160,160,160,.5); top:4%; left:68%; animation: smokeRise1 2.2s ease-out infinite; }
+        .smoke-cig-2 { width:6px; height:6px; background:rgba(140,140,140,.4); top:6%; left:71%; animation: smokeRise2 2.6s ease-out 0.4s infinite; }
+        .smoke-cig-3 { width:7px; height:7px; background:rgba(170,170,170,.35); top:3%; left:66%; animation: smokeRise3 2s ease-out 0.9s infinite; }
+        .smoke-tea-1 { width:5px; height:5px; background:rgba(180,180,180,.35); top:48%; left:42%; animation: smokeRise2 2.8s ease-out 0.2s infinite; }
+        .smoke-tea-2 { width:4px; height:4px; background:rgba(160,160,160,.3); top:46%; left:44%; animation: smokeRise3 2.4s ease-out 0.7s infinite; }
+        @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } .chacha-wrap .smoke { display:none; } * { transition: none !important; } }
       `}</style>
 
       <div className="border-b border-zinc-200 bg-white">
@@ -117,12 +128,19 @@ export default function App() {
               <h1 className="text-5xl sm:text-6xl text-zinc-900 leading-none" style={{ letterSpacing: "-0.04em", fontWeight: 700 }}>
                 Kia <span className="text-rose-600">Samjha?</span>
               </h1>
-              <img
-                src={CHACHA_SRC}
-                alt="Chacha gesturing"
-                className="h-32 sm:h-40 w-auto flex-shrink-0 select-none -mb-1"
-                draggable={false}
-              />
+              <div className="chacha-wrap relative h-32 sm:h-40 flex-shrink-0 -mb-1" style={{ cursor: "default" }}>
+                <img
+                  src={CHACHA_SRC}
+                  alt="Chacha gesturing"
+                  className="h-full w-auto select-none"
+                  draggable={false}
+                />
+                <span className="smoke smoke-cig-1" />
+                <span className="smoke smoke-cig-2" />
+                <span className="smoke smoke-cig-3" />
+                <span className="smoke smoke-tea-1" />
+                <span className="smoke smoke-tea-2" />
+              </div>
             </div>
             <p className="text-zinc-500 leading-relaxed max-w-md">
               You don't need a CS degree — you need a good analogy. Pick any tech, IT,
