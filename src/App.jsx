@@ -1,25 +1,7 @@
 import { useState, useRef } from "react";
+import EXPLANATIONS from "./explanations.json";
 
-const DESI_DECK =
-  "Pakistani pop culture, a wide deck to draw from: music legends (Vital Signs and 'Dil Dil Pakistan', Junoon's Sufi-rock fusion, Nusrat Fateh Ali Khan qawwali, Coke Studio, Atif Aslam, 'Pasoori'); food culture (samosa vs pakora debates, the perfect chai, biryani-with-aloo wars, dhaba nihari, jalebi); cricket (Babar Azam, PSL, last-over collapses, Shoaib Akhtar's pace); iconic dramas (Humsafar, Dhoop Kinare, the never-ending serial); city rivalries (Karachi vs Lahore, 'Lahore Lahore hai'); daily life (load-shedding and K-Electric, jugaar fixes, Careem/inDrive bargaining, rishta aunties, the meddling relative cast — Phuppi, Mamoon, Chacha, Khala — rotate them); Punjabi humour and wordplay; truck-art poetry and rickshaw philosophy.";
-
-const TERM_PRESETS = [
-  "Large Language Model",
-  "Algorithm",
-  "Cloud Computing",
-  "API",
-  "Machine Learning",
-  "Neural Network",
-  "Encryption",
-  "Phishing",
-  "Cookies",
-  "Bandwidth",
-  "AI Hallucination",
-  "Open Source",
-  "Cache",
-  "Blockchain",
-  "VPN",
-];
+const TERM_PRESETS = Object.keys(EXPLANATIONS);
 
 const SECTION_LABELS = [
   { key: "plain_english", label: "PLAIN ENGLISH", accent: false },
@@ -27,84 +9,6 @@ const SECTION_LABELS = [
   { key: "punchline", label: "THE PUNJABI PUNCHLINE", accent: false },
   { key: "real_example", label: "IN REAL LIFE", accent: false },
 ];
-
-async function explainTerm(term) {
-  const prompt = `You are a brilliant Pakistani technologist-artist who explains technology, IT, AI and LLM concepts to a general audience using Pakistani pop culture. Explain the tech term "${term}" for someone with no technical background.
-
-Draw analogies from this deck: ${DESI_DECK}
-
-Return ONLY a raw JSON object — no markdown fences, no preamble:
-{
-  "plain_english": "one accurate, jargon-free sentence defining the term",
-  "analogy": "2-4 sentences mapping the term onto ONE specific Pakistani pop-culture reference — commit to it fully, make it genuinely illuminating, not just decorative",
-  "punchline": "one witty line, ideally with Punjabi/Urdu wordplay or a relatable desi observation — make it funny but still true",
-  "real_example": "2 sentences: one everyday situation where the reader meets this term, plus a sharp 'gotcha' or caveat in the same desi voice"
-}
-
-Keep the technology accurate underneath the jokes. Use natural Urdu-English code-switching. No emojis.`;
-
-  const viaFetch = async () => {
-    const workerUrl = import.meta.env.VITE_API_URL || "https://kia-samjha-api.hashim-nauman.workers.dev";
-    const response = await fetch(workerUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1200,
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
-    let payload;
-    try {
-      payload = await response.json();
-    } catch {
-      throw new Error(`Response was not JSON (HTTP ${response.status})`);
-    }
-    if (payload.error) throw new Error(payload.error.message || `API error (HTTP ${response.status})`);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return (payload.content || [])
-      .filter((b) => b.type === "text")
-      .map((b) => b.text)
-      .join("\n");
-  };
-
-  const viaLegacy = async () => {
-    if (typeof window === "undefined" || !window.claude || typeof window.claude.complete !== "function") {
-      throw new Error("Legacy interface unavailable");
-    }
-    return await window.claude.complete(prompt);
-  };
-
-  const parseOutput = (text) => {
-    const start = text.indexOf("{");
-    const end = text.lastIndexOf("}");
-    if (start === -1 || end === -1) throw new Error("No JSON in model output");
-    const parsed = JSON.parse(text.slice(start, end + 1));
-    for (const k of ["plain_english", "analogy", "punchline", "real_example"]) {
-      if (!parsed[k]) throw new Error("Model output missing expected fields");
-    }
-    return parsed;
-  };
-
-  let lastError = null;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      let text;
-      try {
-        text = await viaFetch();
-      } catch (fetchErr) {
-        console.warn(`Fetch path failed (attempt ${attempt}):`, fetchErr?.message);
-        text = await viaLegacy();
-      }
-      return parseOutput(text);
-    } catch (e) {
-      lastError = e;
-      console.warn(`Explain attempt ${attempt} failed:`, e?.message);
-      if (attempt < 3) await new Promise((r) => setTimeout(r, 800 * attempt));
-    }
-  }
-  throw lastError;
-}
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -156,26 +60,6 @@ const KiaSamjhaGuy = ({ height = 104 }) => (
   </svg>
 );
 
-function SkeletonCard() {
-  return (
-    <article className="border border-zinc-200 bg-white shadow-sm overflow-hidden">
-      <div className="border-l-2 border-rose-600 p-6 sm:p-8 space-y-6">
-        <div className="space-y-3">
-          <div className="h-3 w-24 shimmer rounded-sm" />
-          <div className="h-7 w-2/3 shimmer rounded-sm" />
-        </div>
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="space-y-2 pt-4 border-t border-zinc-100">
-            <div className="h-3 w-32 shimmer rounded-sm" />
-            <div className="h-4 w-full shimmer rounded-sm" />
-            <div className="h-4 w-5/6 shimmer rounded-sm" />
-          </div>
-        ))}
-      </div>
-    </article>
-  );
-}
-
 function ResultCard({ result, index }) {
   const { term, data } = result;
   return (
@@ -211,41 +95,23 @@ function ResultCard({ result, index }) {
 
 export default function App() {
   const [term, setTerm] = useState("");
-  const [customTerm, setCustomTerm] = useState("");
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const outputRef = useRef(null);
-
-  const activeTerm = customTerm.trim() || term;
 
   const reset = () => {
     setResults([]);
     setTerm("");
-    setCustomTerm("");
-    setError(null);
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  const run = async () => {
-    if (!activeTerm || loading) return;
-    setLoading(true);
-    setError(null);
+  const run = () => {
+    if (!term) return;
+    const data = EXPLANATIONS[term];
+    if (!data) return;
+    setResults((prev) => [{ id: Date.now(), term, data }, ...prev]);
     outputRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    try {
-      const data = await explainTerm(activeTerm);
-      setResults((prev) => [{ id: Date.now(), term: activeTerm, data }, ...prev]);
-      setCustomTerm("");
-    } catch (e) {
-      console.error("Explainer error:", e);
-      setError(
-        `The explainer dropped the catch on that one — try again, or rephrase the term.${e?.message ? ` (Details: ${e.message})` : ""}`
-      );
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -255,9 +121,7 @@ export default function App() {
         * { transition: border-color .3s cubic-bezier(.16,1,.3,1), background-color .3s cubic-bezier(.16,1,.3,1), color .3s cubic-bezier(.16,1,.3,1), transform .25s cubic-bezier(.16,1,.3,1), box-shadow .3s cubic-bezier(.16,1,.3,1); }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fadeUp .55s cubic-bezier(.16,1,.3,1) both; }
-        @keyframes shimmerMove { from { background-position: -400px 0; } to { background-position: 400px 0; } }
-        .shimmer { background: linear-gradient(90deg, #e4e4e7 25%, #f4f4f5 50%, #e4e4e7 75%); background-size: 800px 100%; animation: shimmerMove 1.4s linear infinite; }
-        @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } .shimmer { animation: none; } * { transition: none !important; } }
+        @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } * { transition: none !important; } }
       `}</style>
 
       <div className="border-b border-zinc-200 bg-white">
@@ -279,7 +143,7 @@ export default function App() {
               <KiaSamjhaGuy height={104} />
             </div>
             <p className="text-zinc-500 leading-relaxed max-w-md">
-              You don't need a CS degree — you need a good analogy. Type any tech, IT,
+              You don't need a CS degree — you need a good analogy. Pick any tech, IT,
               or AI term and get it explained through Pakistani pop culture: Vital Signs,
               Junoon, samosas vs pakoras, PSL collapses, and a Punjabi punchline to make
               it stick.
@@ -288,13 +152,13 @@ export default function App() {
 
           <section>
             <p className="font-mono text-xs tracking-widest text-zinc-400 mb-3">01 · PICK A TERM</p>
-            <div className="flex flex-wrap gap-2 mb-5">
+            <div className="flex flex-wrap gap-2">
               {TERM_PRESETS.map((t) => {
-                const active = term === t && !customTerm.trim();
+                const active = term === t;
                 return (
                   <button
                     key={t}
-                    onClick={() => { setTerm(t); setCustomTerm(""); }}
+                    onClick={() => setTerm(t)}
                     className={`px-3 py-1 text-sm border active:scale-95 ${
                       active
                         ? "border-rose-600 text-rose-700 bg-rose-50"
@@ -306,54 +170,34 @@ export default function App() {
                 );
               })}
             </div>
-
-            <div className="flex flex-col gap-2">
-              <label htmlFor="custom-term" className="text-sm text-zinc-700" style={{ fontWeight: 500 }}>
-                Or type any term
-              </label>
-              <input
-                id="custom-term"
-                value={customTerm}
-                onChange={(e) => setCustomTerm(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && run()}
-                placeholder="e.g. Quantum Computing, Kubernetes, RAG…"
-                className="w-full bg-white border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-rose-600"
-              />
-              <p className="text-xs text-zinc-400">Free text overrides the chips above.</p>
-            </div>
           </section>
 
           <div className="space-y-3">
             <button
               onClick={run}
-              disabled={!activeTerm || loading}
+              disabled={!term}
               className={`w-full flex items-center justify-between px-5 py-4 border active:scale-95 ${
-                !activeTerm || loading
+                !term
                   ? "border-zinc-200 bg-zinc-100 text-zinc-400 cursor-not-allowed"
                   : "border-rose-700 bg-rose-700 text-white hover:bg-rose-600 shadow-sm"
               }`}
               style={{ fontWeight: 600 }}
             >
               <span>
-                {loading ? "Sochne do… bas 2 minute" : activeTerm ? `Explain "${activeTerm}"` : "Pick a term first"}
+                {term ? `Explain "${term}"` : "Pick a term first"}
               </span>
               <ArrowIcon />
             </button>
 
             <button
               onClick={reset}
-              disabled={loading}
-              className="w-full flex items-center justify-center gap-2 px-5 py-3 border border-zinc-300 bg-white text-zinc-500 hover:text-zinc-800 hover:border-zinc-400 active:scale-95 disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-2 px-5 py-3 border border-zinc-300 bg-white text-zinc-500 hover:text-zinc-800 hover:border-zinc-400 active:scale-95"
               style={{ fontWeight: 500 }}
             >
               <RefreshIcon />
               <span>Acha acha, theek hei</span>
             </button>
           </div>
-
-          {error && (
-            <p className="text-sm text-rose-700 border border-rose-200 bg-rose-50 px-4 py-3">{error}</p>
-          )}
 
           <p className="text-xs text-zinc-400 leading-relaxed border-t border-zinc-200 pt-4">
             Analogies for understanding, not engineering specs. The jokes are desi; the
@@ -370,22 +214,19 @@ export default function App() {
             </span>
           </div>
 
-          {loading && <SkeletonCard />}
-
-          {!loading && results.length === 0 && (
+          {results.length === 0 && (
             <div className="border border-dashed border-zinc-300 bg-white/50 p-10 sm:p-14 text-center">
               <p className="text-zinc-700 text-lg mb-1" style={{ fontWeight: 600 }}>
                 Chalo, shuru karein.
               </p>
               <p className="text-zinc-500 max-w-sm mx-auto leading-relaxed">
-                Pick a term — or type your own — and the desi explanation will land
-                right here.
+                Pick a term and the desi explanation will land right here.
               </p>
             </div>
           )}
 
           {results.map((r, i) => (
-            <ResultCard key={r.id} result={r} index={loading ? i + 1 : i} />
+            <ResultCard key={r.id} result={r} index={i} />
           ))}
         </div>
       </main>

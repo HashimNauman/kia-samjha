@@ -1,0 +1,92 @@
+{
+  "Large Language Model": {
+    "plain_english": "A massive AI system trained on billions of pages of text that can understand and generate human language, answer questions, write code, and carry on conversations.",
+    "analogy": "Think of it like Nusrat Fateh Ali Khan's brain for qawwali. NFAK didn't memorize every possible raag — he absorbed thousands of hours of music, poetry, and spiritual tradition until the patterns lived inside him. When someone threw a verse at him, he could improvise eight hours of qawwali on the spot, weaving in things he'd never explicitly rehearsed. An LLM does the same with text — it's absorbed the internet's worth of writing and can now riff on any topic you throw at it.",
+    "punchline": "Itni kitaabein parhi hain isne, Lahore ke sabse purane librarian ko bhi sharam aa jaye.",
+    "real_example": "When you ask ChatGPT to write your leave application or summarize a long article, that's an LLM working behind the scenes. The gotcha: it's pattern-matching, not thinking — so it can confidently serve you biryani with ketchup and insist it's authentic."
+  },
+  "Algorithm": {
+    "plain_english": "A step-by-step set of instructions that tells a computer exactly how to solve a problem or complete a task.",
+    "analogy": "Your Ammi's biryani recipe is an algorithm. First soak the rice for exactly 30 minutes, then fry the onions until golden-not-burnt, layer the meat, add the masala in precisely this order, seal the pot with atta dough, and cook on dum for 45 minutes. Skip a step or change the order, and you get pulao instead of biryani — which in some households is grounds for a family crisis.",
+    "punchline": "Algorithm wahi hai jo Ammi kehti hain — 'mera tariqa follow karo, warna mat banana.'",
+    "real_example": "When Google Maps finds you the fastest route through Karachi traffic, it's running an algorithm that weighs distance, traffic jams, and road closures. Just remember — like Ammi's recipe, the algorithm is only as good as its inputs. Feed it wrong data and it'll route you through a blocked gali with full confidence."
+  },
+  "Cloud Computing": {
+    "plain_english": "Using someone else's powerful computers over the internet to store your files, run your apps, or do heavy processing — instead of doing it all on your own machine.",
+    "analogy": "It's the IT version of a dhaba. You don't buy a tandoor, hire a chef, and stock a pantry just to eat nihari — you go to the dhaba, order what you need, pay for what you eat, and leave. Cloud computing works the same way: instead of buying expensive servers and maintaining them yourself, you rent computing power from Amazon or Google's massive digital dhabas and only pay for what you use.",
+    "punchline": "Apna server rakhna waise hai jaise ghar mein tandoor lagana — mehengi hobby hai, aur bijli ki bill alag.",
+    "real_example": "Every time you save a photo to Google Drive or watch something on Netflix, you're using the cloud — your data lives on their servers, not your phone. The caveat: when the cloud goes down, it's basically digital load-shedding, and there's no UPS for that."
+  },
+  "API": {
+    "plain_english": "A set of rules that lets two software programs talk to each other and exchange data, like a standardized menu that both sides understand.",
+    "analogy": "An API is the waiter at a restaurant. You don't walk into the kitchen and start telling the chef what to cook — you tell the waiter 'ek plate chicken karahi,' and the waiter takes your order to the kitchen in a format the chef understands, then brings back exactly what you asked for. The waiter is the API: you never see the kitchen's chaos, you just get your food.",
+    "punchline": "API ke bina do apps ki baat waise hai jaise Punjabi aur Pathan bina translator ke negotiate karein.",
+    "real_example": "When you book a Careem ride, the app uses APIs to talk to the maps service for your location, the payment system for your wallet, and the driver's app to match you. If an API breaks, it's like the waiter quit mid-shift — the kitchen is working, you're hungry, but nothing is connecting."
+  },
+  "Machine Learning": {
+    "plain_english": "A type of AI where computers learn patterns from data and improve at tasks through experience, without being explicitly programmed with every rule.",
+    "analogy": "Remember how Shoaib Akhtar didn't become the fastest bowler by reading a physics textbook. He bowled thousands of deliveries, watched what worked, adjusted his run-up, tweaked his wrist position, and his body learned the pattern for 160kph. Machine learning is the same — you feed the computer thousands of examples, it spots the patterns itself, and gets better with each iteration. Nobody wrote the formula; it figured it out from practice.",
+    "punchline": "Computer ko itni baar sikhaate hain, lagta hai board exam ki tayyari karwa rahe hain — ratta maar ke.",
+    "real_example": "When your phone's keyboard predicts that after 'Insha' you probably want 'Allah,' that's machine learning trained on your typing patterns. Just be careful — it also learns your bad habits, so if you keep typing 'thnx,' it'll never learn 'thank you.'"
+  },
+  "Neural Network": {
+    "plain_english": "A computing system inspired by the human brain, made of layers of connected nodes that process information in stages to recognize patterns and make decisions.",
+    "analogy": "Think of it as the gossip network at a big Pakistani wedding. Khala sees the dulha arrive and whispers to Phuppi. Phuppi combines that with what she heard from Mamoon about the jahez. Mamoon passes his analysis to Chacha. By the time the information reaches Daadi at the head table, the raw 'dulha has arrived' has been processed through multiple layers into a full verdict: 'Acha ladka hai, lekin ghar kiraye ka hai.' Each relative is a node, each whisper is a connection, and the final output is a decision.",
+    "punchline": "Neural network basically rishta aunties ka network hai — har layer mein opinion add hota jaata hai.",
+    "real_example": "When your phone unlocks by recognizing your face even in dim light, that's a neural network processing your image through layers of pattern detection. The catch: just like the wedding gossip network, if the first layer gets bad information, the final answer can be spectacularly wrong."
+  },
+  "Encryption": {
+    "plain_english": "Scrambling your data into an unreadable code so that only someone with the right key can unscramble and read it.",
+    "analogy": "You know how truck art has those elaborate designs with hidden messages and poetry that only the initiated can read? Encryption is like writing your WhatsApp messages in that style — anyone who intercepts them just sees beautiful nonsense, but the person with the key sees 'bhai paisa bhej do.' Your data travels through the internet looking like decorative jingle-truck calligraphy, and only the intended recipient can decode the actual message.",
+    "punchline": "Encryption ke bina internet pe message bhejna waise hai jaise mohalle mein loudspeaker pe raaz ki baat karo.",
+    "real_example": "Every time you see that little padlock icon in your browser, your connection is encrypted — your credit card number travels as gibberish that only the bank can decode. Without it, sending sensitive data online would be like discussing your salary on speakerphone in a Saddar bus."
+  },
+  "Phishing": {
+    "plain_english": "A scam where attackers pretend to be a trusted person or company to trick you into revealing passwords, bank details, or other sensitive information.",
+    "analogy": "It's basically the digital version of a rishta scam. Someone shows up claiming to be from a 'very good family, settled abroad, own house own car,' and the biodata looks perfect — but it's all fabricated. Phishing emails work the same way: they dress up as your bank, your boss, or Daraz, with logos and language that look legit, just to get you to hand over the keys to your account.",
+    "punchline": "Phishing aur fake rishta mein fark bas itna hai — ek mein password jaata hai, doosre mein sukoon.",
+    "real_example": "That SMS saying 'Your JazzCash account will be blocked, click here immediately' — classic phishing. The gotcha: real banks never ask for your PIN or password via email or text. If someone's rushing you into clicking, treat it like a pushy rishta aunty — the urgency itself is the red flag."
+  },
+  "Cookies": {
+    "plain_english": "Small files that websites store on your browser to remember who you are, what you prefer, and what you were doing — so you don't start from scratch every visit.",
+    "analogy": "Cookies are like your regular chai dhaba knowing your order. You walk in, the chaiwala sees your face, and without asking he starts making 'aadhi cheeni, elaichi wali, zyada doodh.' He remembers you from yesterday. Website cookies do the same thing — they remember your login, your language preference, your shopping cart. You didn't tell the website anything today; it just remembered from last time.",
+    "punchline": "Cookies basically internet ka hafiza hain — yaad rakhti hain ke tune kal 3 ghante Daraz pe kya kya dekha.",
+    "real_example": "Ever searched for shoes once and then seen shoe ads everywhere for two weeks? That's tracking cookies following you across websites like a persistent dukandaar yelling 'bhai, joote dekh lo!' The real price of convenience — your browsing habits become an open book."
+  },
+  "Bandwidth": {
+    "plain_english": "The maximum amount of data that can be transferred over an internet connection in a given time — basically how wide your digital pipe is.",
+    "analogy": "Think of bandwidth as the width of the Lahore-Islamabad Motorway. A two-lane road can only handle so many cars before everyone slows to a crawl — same as a slow internet connection choking on a video call. Widen it to six lanes and traffic flows freely, just like a high-bandwidth fiber connection lets you stream, download, and video-call simultaneously without anyone buffering.",
+    "punchline": "Bandwidth kam ho toh Netflix dekhna waise hai jaise GT Road pe Eid ki traffic mein phasey ho — bas ruk ruk ke chalo.",
+    "real_example": "When everyone in the house is on WiFi — Abbu on YouTube, Ammi on a video call, you on a game — and everything starts buffering, that's your bandwidth being split like a roti between too many haath. Upgrading your plan is like adding lanes to the highway."
+  },
+  "AI Hallucination": {
+    "plain_english": "When an AI confidently generates information that sounds correct but is actually made up, presenting fiction as fact.",
+    "analogy": "You know that uncle at every dawat who tells stories with absolute conviction — 'I once had chai with Imran Khan at his Bani Gala farmhouse, he told me personally...' — and the details are so specific that everyone believes him, but none of it actually happened? AI hallucination is exactly that. The AI doesn't know it's making things up; it genuinely thinks it's being helpful, just like chacha genuinely believes his own stories after telling them enough times.",
+    "punchline": "AI hallucination aur dawat wale chacha mein fark dhoondna mushkil hai — dono ko apni baat pe pura yaqeen hai.",
+    "real_example": "Ask an AI for legal references and it might cite court cases that don't exist, complete with fake case numbers and judge names. Always verify AI-generated facts the way you'd verify chacha's claims — independently, and with healthy skepticism."
+  },
+  "Open Source": {
+    "plain_english": "Software whose code is publicly available for anyone to view, use, modify, and share — built by communities rather than locked behind corporate walls.",
+    "analogy": "Open source is like the recipe culture in Pakistani homes. Ammi doesn't patent her keema recipe — she shares it with the neighbor, the neighbor adds her own twist with extra hari mirch, that version reaches the cousin in Islamabad who substitutes with chicken, and now there are fifteen versions of the recipe, each one improved by whoever touched it. Nobody owns it, everyone benefits, and the collective keema game keeps getting stronger.",
+    "punchline": "Open source woh hai jahan code bhi mohalle ki recipe ki tarah hai — sab ne apna tadka lagaya hua hai.",
+    "real_example": "Android on your phone, WordPress running half the internet, even the Linux servers that power most of Pakistan's banking apps — all open source. The beauty is anyone can audit the code for security. The catch: 'free' doesn't mean 'no effort' — someone still has to cook the keema, even if the recipe is free."
+  },
+  "Cache": {
+    "plain_english": "A temporary storage area that keeps copies of frequently accessed data close at hand, so your device doesn't have to fetch it from the original source every time.",
+    "analogy": "Cache is like keeping a paratha in the hot case instead of making a fresh one from scratch every time someone orders. The dhaba owner knows parathas sell fast, so he keeps a few ready to go — when you order, it's served instantly instead of waiting 15 minutes for the dough, rolling, and cooking. Your browser does the same: it saves images and page data locally so websites load fast on repeat visits instead of downloading everything again.",
+    "punchline": "Cache clear karna waise hai jaise hot case khaali karna — ab har cheez dubara banana padegi, aur time lagega.",
+    "real_example": "Ever noticed a website loads slowly the first time but flies on the second visit? That's caching at work. The catch: sometimes the cache serves you yesterday's stale paratha when the menu has changed — that's when 'clear your cache' becomes the IT equivalent of 'have you tried turning it off and on again.'"
+  },
+  "Blockchain": {
+    "plain_english": "A digital ledger shared across many computers where transactions are recorded permanently and can't be secretly altered — because everyone has a copy.",
+    "analogy": "Imagine the entire mohalla maintains the same hisaab kitaab for the local committee fund. Every transaction — Rashid bhai ne 5000 diye, Saleem ne 2000 nikale — is written in everyone's copy simultaneously. If someone tries to secretly change their entry, the other 50 copies immediately expose the tampering. Nobody trusts a single treasurer because everyone IS the treasurer. That's blockchain: distributed trust through radical transparency.",
+    "punchline": "Blockchain basically mohalle ka committee system hai — har kisi ke paas hisaab ki copy hai, koi hera pheri nahi chalegi.",
+    "real_example": "Bitcoin runs on blockchain — every transaction ever made is recorded across thousands of computers worldwide. The gotcha: the 'permanent record' part is a double-edged sword. That dodgy transaction you made? It's there forever, like that one embarrassing photo Mamoon took at the wedding — delete nahi hogi."
+  },
+  "VPN": {
+    "plain_english": "A tool that creates a private, encrypted tunnel for your internet traffic and masks your real location by routing it through a server somewhere else in the world.",
+    "analogy": "A VPN is like sending your letter through a trusted friend in Dubai instead of the local post office. The local postmaster (your ISP) sees a letter going to Dubai — but he can't read it because it's sealed, and he doesn't know the final destination. Your Dubai friend opens it, reads the real address, and forwards it. To the recipient, the letter came from Dubai. To the postmaster, you just wrote to a friend. Nobody in the middle knows the full picture.",
+    "punchline": "VPN basically internet ka burkha hai — bahar se koi nahi jaanta andar kya chal raha hai.",
+    "real_example": "When a website is blocked in Pakistan and you connect through a VPN to access it, you're routing through a server in another country that isn't blocking it. Just know that free VPNs often make money by selling your data — like a 'trustworthy' middleman who reads your letters before forwarding them."
+  }
+}
